@@ -27,13 +27,6 @@
   (interactive)
   (replace-string "" "\n"))
 
-;; Better python mode http://sourceforge.net/projects/python-mode/
-(setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
-(setq interpreter-mode-alist (cons '("python" . python-mode)
-                                   interpreter-mode-alist))
-(autoload 'python-mode "python-mode" "Python editing mode." t)
-(setq ipython-command "/usr/bin/ipython")
-(require 'ipython)
 
 ;; insert a pdb.set_trace() at point (look into defining this only for python)
 (defun insert_trace ()
@@ -103,8 +96,6 @@
 (require 'ido)
 (ido-mode t)
 
-(require 'buffer-move)
-
 ;; I-search with initial contents
 (defvar isearch-initial-string nil)
 
@@ -152,28 +143,21 @@
 	 (substring dir 0 -1) dir))
 	 (newname (concat dir "/" name)))
 
- (if (not filename)
-	(message "Buffer '%s' is not visiting a file!" name)
- (progn 	(copy-file filename newname 1) 	(delete-file filename) 	(set-visited-file-name newname) 	(set-buffer-modified-p nil) 	t)))) 
+   (if (not filename)
+       (message "Buffer '%s' is not visiting a file!" name)
+     (progn 	(copy-file filename newname 1) 	(delete-file filename) 	(set-visited-file-name newname) 	(set-buffer-modified-p nil) 	t)))) 
 
 
+(load-library "haskell-mode-2.4/haskell-site-file")
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)  
+;; Rinari
+(append-path "~/elisp/rinari")
+(require 'rinari)
 
 
-
-(require 'uniquify) ; commands from http://trey-jackson.blogspot.com/2008/01/emacs-tip-11-uniquify.html
-(setq uniquify-buffer-name-style 'reverse)
-(setq uniquify-separator "/")
-(setq uniquify-after-kill-buffer-p t) ; rename after killing uniquified
-(setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers(setq uniquify-buffer-name-style "forward")
-(setq-default indent-tabs-mode nil)
-;; shut the fuck up
-(setq visible-bell t)
-(custom-set-variables
-  ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!
-  ;; Your init file should contain only one such instance.
- '(js2-basic-offset 4)
- '(js2-highlight-level 3))
-(custom-set-faces
-  ;; custom-set-faces was added by Custom -- don't edit or cut/paste it!
-  ;; Your init file should contain only one such instance.
- )
+;; Better python mode http://sourceforge.net/projects/python-mode/
+(setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
+(setq interpreter-mode-alist (cons '("python" . python-mode)
+                                   interpreter-mode-alist))
+(autoload 'python-mode "python-mode" "Python editing mode." t)
