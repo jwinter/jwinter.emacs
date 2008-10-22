@@ -1,13 +1,3 @@
-(defun prepend-path ( my-path )
-  (setq load-path (cons (expand-file-name my-path) load-path))) 
-(defun append-path ( my-path ) 
-  (setq load-path (append load-path (list (expand-file-name my-path))))) 
-(prepend-path "~/elisp")
-;; Look first in the directory ~/elisp for elisp files (prepend-path "~/elisp")
-;; .emacs
-;;; uncomment this line to disable loading of "default.el" at startup
-;; (setq inhibit-default-init t)
-
 ;get rid of menus
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -155,9 +145,25 @@
 (append-path "~/elisp/rinari")
 (require 'rinari)
 
+(require 'uniquify) ; commands from http://trey-jackson.blogspot.com/2008/01/emacs-tip-11-uniquify.html
+(setq uniquify-buffer-name-style 'reverse)
+(setq uniquify-separator "/")
+(setq uniquify-after-kill-buffer-p t) ; rename after killing uniquified
+(setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers(setq uniquify-buffer-name-style "forward")
+(setq-default indent-tabs-mode nil)
+;; shut the fuck up
+(setq visible-bell t)
+(custom-set-variables
+  ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!
+  ;; Your init file should contain only one such instance.
+ '(js2-basic-offset 4)
+ '(js2-highlight-level 3))
+
 
 ;; Better python mode http://sourceforge.net/projects/python-mode/
 (setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
 (setq interpreter-mode-alist (cons '("python" . python-mode)
                                    interpreter-mode-alist))
 (autoload 'python-mode "python-mode" "Python editing mode." t)
+
+(provide 'jwinter) ;coda
