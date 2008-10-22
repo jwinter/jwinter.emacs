@@ -1,0 +1,4 @@
+A nice .emacs file for Ruby, Python, Haskell, etc.
+
+Installation:
+cp jwinter.emacs/.emacs ~/.emacs

@@ -1,0 +1,5 @@
+Installation:
+cp jwinter.emacs/.emacs ~/.emacs
+M-x byte-compile-file js2.el
+
+Then restart Emacs.
