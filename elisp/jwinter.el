@@ -166,4 +166,10 @@
                                    interpreter-mode-alist))
 (autoload 'python-mode "python-mode" "Python editing mode." t)
 
+(append-path "~/jwinter.emacs/elisp/clojure-mode")
+(append-path "~/jwinter.emacs/elisp/swank-clojure")
+(setq swank-clojure-binary "clojure")
+(require 'clojure-auto)
+(require 'swank-clojure-autoload)
+
 (provide 'jwinter) ;coda
