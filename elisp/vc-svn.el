@@ -198,7 +198,7 @@ If the file is newly added, LOCAL is \"0\" and CHANGED is nil."
             (match-string 3)))
      ((looking-at "^I +") nil)       ;; An ignored file
      ((looking-at " \\{40\\}") nil)  ;; A file that is not in the wc nor svn?
-     (t (error "Couldn't parse output from `svn status -v'")))))
+     )))
 
 
 (defun vc-svn-parse-state-only ()
