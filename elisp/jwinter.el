@@ -166,6 +166,11 @@
                                    interpreter-mode-alist))
 (autoload 'python-mode "python-mode" "Python editing mode." t)
 
+(append-path "~/jwinter.emacs/elisp/slime/")
+;(setq inferior-lisp-program "/User/jwinter/bin/clojure") ; your Lisp system
+(require 'slime)
+(slime-setup)
+
 (append-path "~/jwinter.emacs/elisp/clojure-mode")
 (append-path "~/jwinter.emacs/elisp/swank-clojure")
 (setq swank-clojure-binary "clojure")
