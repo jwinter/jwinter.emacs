@@ -18,12 +18,12 @@
   (replace-string "" "\n"))
 
 
-;; insert a pdb.set_trace() at point (look into defining this only for python)
+;; insert a debbuger statement for ruby at point (look into defining this only for ruby)
 (defun insert_trace ()
   "insert pdb trace at point"
   (interactive)
   (save-excursion
-    (insert "import pdb;pdb.set_trace();")
+    (insert "require 'ruby-debug';debugger")
     ))
 (global-set-key "\C-ci" 'insert_trace)
 
