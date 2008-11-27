@@ -177,4 +177,6 @@
 (require 'clojure-auto)
 (require 'swank-clojure-autoload)
 
+(require 'magit)
+
 (provide 'jwinter) ;coda
