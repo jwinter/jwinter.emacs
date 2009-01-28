@@ -4,3 +4,6 @@
 [submodule "elisp/rinari"]
 	path = elisp/rinari
 	url = git://github.com/eschulte/rinari.git
+[submodule "elisp/jump"]
+	path = elisp/jump
+	url = git://github.com/eschulte/jump.el.git
