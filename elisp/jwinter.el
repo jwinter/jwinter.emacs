@@ -143,6 +143,7 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)  
 ;; Rinari
 (append-path "~/jwinter.emacs/elisp/rinari")
+(append-path "~/jwinter.emacs/elisp/jump")
 (require 'rinari)
 
 (require 'uniquify) ; commands from http://trey-jackson.blogspot.com/2008/01/emacs-tip-11-uniquify.html
