@@ -1,7 +1,7 @@
 A nice .emacs file for Ruby, Python, Haskell, etc.
 
 Installation:
-cp jwinter.emacs/.emacs ~/.emacs
+ln -s ~/jwinter.emacs/.emacs ~/.emacs
 cd jwinter.emacs
 git submodule init
 git submodule update
