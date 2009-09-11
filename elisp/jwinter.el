@@ -12,6 +12,8 @@
 
 (setq tramp-default-method "ssh")
 
+(setq show-trailing-whitespace t)
+
 ;;Replace ^M with newlines
 (defun mac-newlines ()
   (interactive)
