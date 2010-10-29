@@ -176,10 +176,15 @@
 
 (append-path "~/jwinter.emacs/elisp/clojure-mode")
 (append-path "~/jwinter.emacs/elisp/swank-clojure")
+;(setq swank-clojure-binary "/Users/jwinter/bin/clojure")
 (setq swank-clojure-binary "clojure")
 (require 'clojure-auto)
 (require 'swank-clojure-autoload)
 
 (require 'magit)
+(require 'gist)
 
 (provide 'jwinter) ;coda
+
+;;(setq x-select-enable-clipboard t)
+
