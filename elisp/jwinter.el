@@ -1,7 +1,7 @@
 ;get rid of menus
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(set-default-font "-Adobe-Courier-Medium-R-Normal--12-120-75-75-M-70-ISO8859-1")
+;(set-default-font "-Adobe-Courier-Medium-R-Normal--12-120-75-75-M-70-ISO8859-1")
 (if (fboundp 'blink-cursor-mode) (blink-cursor-mode 0))
 
 (global-set-key [delete] 'delete-char)
@@ -143,10 +143,6 @@
 (load-library "haskell-mode-2.4/haskell-site-file")
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)  
-;; Rinari
-(append-path "~/jwinter.emacs/elisp/rinari")
-(append-path "~/jwinter.emacs/elisp/jump")
-(require 'rinari)
 
 (require 'uniquify) ; commands from http://trey-jackson.blogspot.com/2008/01/emacs-tip-11-uniquify.html
 (setq uniquify-buffer-name-style 'reverse)
@@ -169,22 +165,27 @@
                                    interpreter-mode-alist))
 (autoload 'python-mode "python-mode" "Python editing mode." t)
 
-(append-path "~/jwinter.emacs/elisp/slime/")
-;(setq inferior-lisp-program "/User/jwinter/bin/clojure") ; your Lisp system
-(require 'slime)
-(slime-setup)
-
-(append-path "~/jwinter.emacs/elisp/clojure-mode")
-(append-path "~/jwinter.emacs/elisp/swank-clojure")
-;(setq swank-clojure-binary "/Users/jwinter/bin/clojure")
-(setq swank-clojure-binary "clojure")
-(require 'clojure-auto)
-(require 'swank-clojure-autoload)
-
-(require 'magit)
 (require 'gist)
-
+(require 'mode-compile)
+(require 'flymake-ruby)
+(add-hook 'ruby-mode-hook 'flymake-ruby-load)
 (provide 'jwinter) ;coda
 
 ;;(setq x-select-enable-clipboard t)
+(require 'whitespace)
+(autoload 'whitespace-mode  "whitespace" "Toggle whitespace visualization." t)
 
+(defun mac-copy ()
+(shell-command-to-string "pbpaste"))
+
+(defun mac-paste (text &optional push)
+  (let ((process-connection-type nil)) 
+    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+      (process-send-string proc text)
+      (process-send-eof proc))))
+
+(setq interprogram-cut-function 'mac-paste)
+(setq interprogram-paste-function 'mac-copy)
+(setq org-startup-indented t)
+(require 'erc)
+(setq erc-hide-list '("QUIT"))
