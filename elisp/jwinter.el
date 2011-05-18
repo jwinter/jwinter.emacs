@@ -31,7 +31,7 @@
 
 
 ;; Stevey's Javascript mode: http://code.google.com/p/js2-mode/
-(autoload 'js2-mode "js2" nil t)
+(autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 
@@ -179,7 +179,7 @@
 (shell-command-to-string "pbpaste"))
 
 (defun mac-paste (text &optional push)
-  (let ((process-connection-type nil)) 
+  (let ((process-connection-type nil))
     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
       (process-send-string proc text)
       (process-send-eof proc))))
@@ -188,4 +188,4 @@
 (setq interprogram-paste-function 'mac-copy)
 (setq org-startup-indented t)
 (require 'erc)
-(setq erc-hide-list '("QUIT"))
+(setq erc-hide-list '("QUIT" "JOIN" "NICK"))
