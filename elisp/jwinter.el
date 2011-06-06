@@ -189,3 +189,9 @@
 (setq org-startup-indented t)
 (require 'erc)
 (setq erc-hide-list '("QUIT" "JOIN" "NICK"))
+
+
+(setq auto-mode-alist (cons '("Gemfile" . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("Rakefile" . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("Vagrantfile" . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.gemspec$" . ruby-mode) auto-mode-alist))
