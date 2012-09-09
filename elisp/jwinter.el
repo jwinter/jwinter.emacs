@@ -20,12 +20,12 @@
   (replace-string "" "\n"))
 
 
-;; insert a debbuger statement for ruby at point (look into defining this only for ruby)
+;; insert a debugger statement for ruby at point (look into defining this only for ruby-mode)
 (defun insert_trace ()
   "insert pdb trace at point"
   (interactive)
   (save-excursion
-    (insert "require 'ruby-debug';debugger")
+    (insert "binding.pry")
     ))
 (global-set-key "\C-ci" 'insert_trace)
 
@@ -91,22 +91,22 @@
 ;; I-search with initial contents
 (defvar isearch-initial-string nil)
 
-(defun isearch-set-initial-string ()
-  (remove-hook 'isearch-mode-hook 'isearch-set-initial-string)
-  (setq isearch-string isearch-initial-string)
-  (isearch-search-and-update))
+;; (defun isearch-set-initial-string ()
+;;   (remove-hook 'isearch-mode-hook 'isearch-set-initial-string)
+;;   (setq isearch-string isearch-initial-string)
+;;   (isearch-search-and-update))
 
-(defun isearch-forward-at-point (&optional regexp-p no-recursive-edit)
-  "Interactive search forward for the symbol at point."
-  (interactive "P\np")
-  (if regexp-p (isearch-forward regexp-p no-recursive-edit)
-    (let* ((end (progn (skip-syntax-forward "w_") (point)))
-           (begin (progn (skip-syntax-backward "w_") (point))))
-      (if (eq begin end)
-          (isearch-forward regexp-p no-recursive-edit)
-        (setq isearch-initial-string (buffer-substring begin end))
-        (add-hook 'isearch-mode-hook 'isearch-set-initial-string)
-        (isearch-forward regexp-p no-recursive-edit)))))
+;; (defun isearch-forward-at-point (&optional regexp-p no-recursive-edit)
+;;   "Interactive search forward for the symbol at point."
+;;   (interactive "P\np")
+;;   (if regexp-p (isearch-forward regexp-p no-recursive-edit)
+;;     (let* ((end (progn (skip-syntax-forward "w_") (point)))
+;;            (begin (progn (skip-syntax-backward "w_") (point))))
+;;       (if (eq begin end)
+;;           (isearch-forward regexp-p no-recursive-edit)
+;;         (setq isearch-initial-string (buffer-substring begin end))
+;;         (add-hook 'isearch-mode-hook 'isearch-set-initial-string)
+;;         (isearch-forward regexp-p no-recursive-edit)))))
 (global-set-key "\C-s" 'isearch-forward)
 (global-set-key [?\C-\S-S] 'isearch-forward-at-point)
 (load-library "vc-svn")
@@ -166,7 +166,7 @@
 (autoload 'python-mode "python-mode" "Python editing mode." t)
 
 (require 'gist)
-(require 'mode-compile)
+;(require 'mode-compile)
 (require 'flymake-ruby)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 (provide 'jwinter) ;coda
@@ -195,3 +195,13 @@
 (setq auto-mode-alist (cons '("Rakefile" . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("Vagrantfile" . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.gemspec$" . ruby-mode) auto-mode-alist))
+
+(require 'etags-select)
+(visit-tags-table "~/src/TAGS") ; One giant TAGS file (not sure if that's a bad idea or not)
+(global-set-key "\M-?" 'etags-select-find-tag-at-point)
+(global-set-key "\M-." 'etags-select-find-tag)
+
+;(require 'rspec-mode)
+
+;(set-face-background 'flymake-errline "gray20")
+;(set-face-background 'flymake-warnline "gray20")
