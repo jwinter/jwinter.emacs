@@ -195,11 +195,12 @@
 (setq auto-mode-alist (cons '("Rakefile" . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("Vagrantfile" . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.gemspec$" . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.rake$" . ruby-mode) auto-mode-alist))
 
-(require 'etags-select)
-(visit-tags-table "~/src/TAGS") ; One giant TAGS file (not sure if that's a bad idea or not)
-(global-set-key "\M-?" 'etags-select-find-tag-at-point)
-(global-set-key "\M-." 'etags-select-find-tag)
+;; (require 'etags-select)
+;; (visit-tags-table "~/src/TAGS") ; One giant TAGS file (not sure if that's a bad idea or not)
+;; (global-set-key "\M-?" 'etags-select-find-tag-at-point)
+;; (global-set-key "\M-." 'etags-select-find-tag)
 
 ;(require 'rspec-mode)
 
