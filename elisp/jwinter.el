@@ -167,8 +167,6 @@
 
 (require 'gist)
 ;(require 'mode-compile)
-(require 'flymake-ruby)
-(add-hook 'ruby-mode-hook 'flymake-ruby-load)
 (provide 'jwinter) ;coda
 
 ;;(setq x-select-enable-clipboard t)
@@ -196,6 +194,9 @@
 (setq auto-mode-alist (cons '("Vagrantfile" . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.gemspec$" . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.rake$" . ruby-mode) auto-mode-alist))
+
+(add-hook 'ruby-mode-hook 'flycheck-mode)
+
 
 ;; (require 'etags-select)
 ;; (visit-tags-table "~/src/TAGS") ; One giant TAGS file (not sure if that's a bad idea or not)
