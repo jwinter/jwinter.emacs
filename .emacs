@@ -6,7 +6,7 @@
   (setq load-path (append load-path (list (expand-file-name my-path)))))
 (prepend-path "~/src/jwinter.emacs/elisp")
 (require 'jwinter)
-
+(global-set-key (kbd "C-u") 'previous-multiframe-window)
 
 (require 'package)
 (add-to-list 'package-archives 
@@ -38,3 +38,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(add-hook 'term-mode-hook
+  (lambda()
+    (define-key term-raw-map [(control ?u)] 'previous-multiframe-window)))
+
+(setq rsense-home "/Users/Joseph.Winter/src/jwinter.emacs/rsense-0.3")
+(add-to-list 'load-path (concat rsense-home "/etc"))
+(require 'rsense)
+
